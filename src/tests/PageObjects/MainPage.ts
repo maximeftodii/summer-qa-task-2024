@@ -19,6 +19,7 @@ export default class MainPage {
     private descriptionCounter: number = 1;
     private currentTaskName: string | null = null;
 
+
     constructor(private page: Page) { }
 
     private createTaskName(increment: boolean = true): string {
@@ -85,6 +86,7 @@ export default class MainPage {
         console.log("Deleting task");
         const taskName = this.createTaskName(false);
         const description = this.generateDescription();
+        
         await this.page.locator(this.DeleteButton).click();
         await this.page.reload();
         await expect(this.page.getByText(taskName)).toBeHidden();
@@ -107,6 +109,7 @@ export default class MainPage {
     async createTaskWithDifferentOptions() {
         const importances = ['Low', 'Medium', 'High'];
         const labels = ['Work', 'Social', 'Home', 'Hobby'];
+
         for (const importance of importances) {
             for (const label of labels) {
                 await this.createNewTask();
@@ -134,23 +137,36 @@ export default class MainPage {
                 importanceValues.push(match[1].trim());
             }
         }
+        console.log('Importance Values Retrieved:', importanceValues);
         return importanceValues;
     }
 
-    async verifySortedOrder(expectedOrder: string[]): Promise<void> {
+    async verifySortedOrder(): Promise<void> {
         const sortedTasks = await this.getTaskImportanceList();
+        const expectedOrder = await this.sortImportanceList();
         if (JSON.stringify(sortedTasks) !== JSON.stringify(expectedOrder)) {
             throw new Error(`Sorting validation failed. Expected order: ${expectedOrder}, but got: ${sortedTasks}`);
         }
     }
 
+    async sortImportanceList() {
+        const importanceOrder: { [key: string]: number } = {
+            'High': 3,
+            'Medium': 2,
+            'Low': 1
+        };
+
+        const importances = await this.getTaskImportanceList();
+        console.log(importances);
+        const sortedImportances: string[] = [...importances].sort((a, b) => importanceOrder[b] - importanceOrder[a]);
+        return sortedImportances;
+    }
     async createTaskVerifyOrder() {
-        const expectedOrder = ['High', 'Medium', 'Low'];
         await this.createTaskWithDifferentOptions();
         await this.selectSortOrder('Sort by Importance (Descending)');
-        await this.getTaskImportanceList();
+
         try {
-            await this.verifySortedOrder(expectedOrder);
+            await this.verifySortedOrder();
         } catch (error: unknown) {
             if (error instanceof Error) {
                 console.error(`Error: ${error.message}`);
