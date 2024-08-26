@@ -1,0 +1,129 @@
+- Deletion of Tasks Does Not Reflect After Page Refresh 
+
+Summary:
+When a user creates and then deletes tasks on the default "Tasks" page, the tasks are not permanently deleted. When refreshing the page, the deleted tasks reappear.
+
+Severity: Major
+Priority: High
+
+Steps to Reproduce:
+Navigate to the "Tasks" page.
+Enter a title in the "Task Title" field.
+Click the "Add Task" button to create the task.
+Select the newly created task for deletion.
+Click the "Delete" button to remove the task.
+Refresh the page.
+Expected Result:
+The task should be permanently deleted and should not reappear after the page is refreshed.
+
+Actual Result:
+After refreshing the page, the deleted task reappears as if it was never deleted.
+
+Environment:
+Browser: Chrome
+OS: Windows 11
+
+
+- Edited Task Reverts to Original State After Page Refresh 
+
+Summary:
+When a user edits a task on the default "Tasks" page, the changes are not saved permanently. When refreshing the page, the task reverts to its original state before the edit.
+
+Severity: Major
+Priority: High
+
+Steps to Reproduce:
+Navigate to the "Tasks" page.
+Enter a title in the "Task Title" field.
+Click the "Add Task" button to create the task.
+Select the newly created task and make edits to its title or other details.
+Save the changes.
+Refresh the page.
+
+Expected Result:
+The edited task should retain the changes made and display the updated information after the page is refreshed.
+
+Actual Result:
+After refreshing the page, the task reverts to its original state, as if no edits were made.
+
+Environment:
+Browser: Chrome
+OS: Windows 11
+
+
+
+- Task Created with Incorrect Status 
+
+Summary:
+When a task is created, it is set to a completed status by default, even though it should be set to incomplete.
+
+Severity: Major
+Priority: High
+
+Steps to Reproduce:
+
+Navigate to the "Tasks" page.
+Enter a title in the "Task Title" field.
+Click the "Add Task" button to create the task.
+Check  the task's status.
+Expected Result:
+The task should be created with an incomplete status by default.
+
+Actual Result:
+The task is created with a completed status by default.
+
+Environment:
+Browser: Chrome
+OS: Windows 11
+
+
+- Sorting by Importance is Not Working -
+
+Summary:
+When sorting tasks by importance in descending order, the tasks are not sorted correctly. The displayed order does not reflect the expected descending sequence of importance levels (High, Medium, Low).
+
+Severity: Major
+Priority: High
+
+Steps to Reproduce:
+
+Navigate to the task creation page.
+Create tasks with various importance levels (Low, Medium, High) and labels (e.g., Work).
+Go to the task list or dashboard where tasks are displayed.
+Select the sorting option to sort tasks by importance in descending order.
+Check the order of tasks displayed.
+Expected Result:
+Tasks should be sorted in descending order of importance, showing the sequence: High, Medium, Low.
+
+Actual Result:
+Tasks are not sorted correctly; the displayed order does not match the expected descending order. For example, tasks might be ordered as Medium, Medium, Medium, Low, Low, Low, High, High, High.
+
+Environment:
+
+Browser: Chrome
+OS: Windows 11
+
+- Labels on Tasks are Not Aligned When Descriptions Differ
+
+Summary:
+The labels on tasks are not properly aligned when some tasks have descriptions and others do not. This misalignment affects the visual appearance of the task list and makes it look inconsistent.
+
+Severity: Minor
+Priority: Medium
+
+Steps to Reproduce:
+
+Navigate to the task list or dashboard where tasks are displayed.
+Create some tasks with descriptions and some without descriptions.
+Observe the alignment of labels on the tasks.
+Check the visual alignment of labels between tasks with and without descriptions.
+Expected Result:
+Labels on tasks should be aligned consistently, regardless of whether a task has a description. The visual appearance should be clean and uniform.
+
+Actual Result:
+Labels are misaligned when some tasks have descriptions and others do not. This causes a visual inconsistency in the task list or dashboard.
+
+Environment:
+
+Browser: Chrome
+OS: Windows 11
